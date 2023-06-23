@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Octaaf</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+       body{
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 1%;
+        /* background-image:url(https://i.pinimg.com/originals/22/0e/5c/220e5c0a66c4c1840ab3db2c55f47cd2.jpg); */
+        background-color: #ebebeb;
+       }
+       a{
+        text-decoration: none;
+       }
+       .head{
+        height: 76px;
+        margin-top: -2%;
+        margin-left: -1.5%;
+        margin-right: -1.5%;
+        background-color: black;
+       }
+       .c_form{
+        height: 35px;
+        /* background: rgba(255,255,255,0.9); */
+       }
+       .col1,.col2,.col3{
+        width: 28%;
+        float: left;
+        margin: 1%;
+        padding: 15px;
+        border: 1px solid white;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+       }
+       .col1{
+        margin-left: 2%;
+       }
+       .col2{
+        margin-left: 2%;
+        margin-right: 2%;
+       }
+       .collapsible {
+        cursor: pointer;
+        width: 100%;
+        border: none;
+        text-align:center;
+        outline: none;
+        font-size: 3em;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        margin-bottom: 8px;
+        }
+        .active, .collapsible:hover {
+        background-color: #ccc;
+        }
+       .display{
+        height: 77vh;
+        overflow: auto;
+        /* background: rgba(255,255,255,0.9); */
+       }
+       .news_check{
+        float: left;
+        padding: 5px;
+       }
+       .submit{
+        float: right;
+       }
+       .card{
+        padding-top: 5px;
+        margin-bottom: 5px;
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        text-align: justify;
+        height: 125px;
+        overflow-block:hidden;
+       }
+       .title{
+        color: #444;
+        padding-bottom: 10px;
+       }
+       .discription{
+        color: #292929;
+        clear:none;
+        padding-left: 5px;
+       }
+       .source{
+        color: red;
+        float: right;
+        height: 16px;
+        width: 16px;
+       }
+       .image{
+        float:left;
+        height: 120px;
+        width: 150px;
+        margin-right: 5px;
+       }
+       #tnm_fav,#czm_fav,#alj_fav,#pti_fav,#ani_fav,#rut_fav{
+        height: 20px;
+        width: 20px;
+       }
+       #logo{
+        -webkit-filter: invert(1);
+        filter: invert(1);
+        margin-top: 0.8%;
+        margin-left: 6%;
+        width: 70px;
+        height: 60px;
+        float: left;
+        clear: both;
+        }
+        #logo_title{
+        color: white;
+        font-size: 4.4em;
+        margin-left: 0.5%;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="bck">
+        <header class="head">
+            <img id="logo" src="https://assets.onlinelabels.com/images/clip-art/Firkin/Paper%20boy-291558.png" alt="paperboy">
+            <label id="logo_title">
+                News run
+            </label>
+        </header>
+        <!-- <div style="height:50vh;">{{news}}</div> -->
+        <section>
+            <div class="col1">
+                <button type="button" class="collapsible" id="collapsible1">Local</button>
+                <div class="c_form" id="c1_form">
+                    <form action="LOC">
+                        <div class="news_check"><input type="checkbox" name="czmLoc" value="True" checked><img id="czm_fav" src="https://images.citizenmatters.in/wp-content/uploads/sites/14/2020/07/21155731/cropped-CITIZEN-MATTERS-Bengaluru-Favicon.jpg?strip=all&lossy=1&ssl=1" alt="czm"></div>
+                        <div class="news_check"><input type="checkbox" name="tnmLoc" value="True" checked><img id="tnm_fav" src="https://www.thenewsminute.com/sites/default/files/favicon.ico" alt="tnh"></div>
+                        <button class="submit" type="submit">Go</button>
+                    </form>
+                </div>
+                <div class="display">
+                    {% for items in loc_news %}
+                    <a href={{items.Link}} target="_blank">
+                        <div class="card">
+                            <img src={{items.Thumbnail}} class="image">
+                            <label class="title"><strong>{{items.Title}}</strong></label><br>
+                            <label class="discription"><em>{{items.Discription}}</em></label>
+                            {% if items.Sauce == 'PTI' %}
+                            <img src="https://www.ptinews.com/img/favicon.ico" class="source">
+                            {% elif items.Sauce == 'ANI' %}
+                            <img src="https://d3lzcn6mbbadaf.cloudfront.net/static/img/icons/favicon-16x16.png" class="source">
+                            {% else %}
+                            {% endif %}
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="col2">
+                <button type="button" class="collapsible" id="collapsible2">National</button>
+                <div class="c_form" id="c2_form">
+                    <form action="NAT" method="GET">
+                        <div class="news_check"><input type="checkbox" name="aniNat" value="True" checked><img id="ani_fav" src="https://d3lzcn6mbbadaf.cloudfront.net/static/img/icons/favicon-16x16.png" alt="ANI"></div>
+                        <div class="news_check"><input type="checkbox" name="ptiNat" value="True" checked><img id="pti_fav" src="https://www.ptinews.com/img/favicon.ico" alt="PTI"></div>
+                        <button class="submit" type="submit">Go</button>
+                    </form>
+                </div>    
+                <div class="display">
+                    {% for items in nat_news %}
+                    <a href={{items.Link}} target="_blank">
+                        <div class="card">
+                            <img src={{items.Thumbnail}} class="image">
+                            <label class="title"><strong>{{items.Title}}</strong></label><br>
+                            <label class="discription"><em>{{items.Discription}}</em></label>
+                            {% if items.Sauce == 'CZM' %}
+                            <img src="https://images.citizenmatters.in/wp-content/uploads/sites/14/2020/07/21155731/cropped-CITIZEN-MATTERS-Bengaluru-Favicon.jpg?strip=all&lossy=1&ssl=1" class="source">
+                            {% elif items.Sauce == 'TNM' %}
+                            <img src="https://www.thenewsminute.com/sites/default/files/favicon.ico" class="source">
+                            {% else %}
+                            {% endif %}
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="col3">
+                <button type="button" class="collapsible" id="collapsible3">International</button>
+                <div class="c_form" id="c3_form">
+                    <form action="INT" method="GET">
+                        <div class="news_check"><input type="checkbox" name="rutInt" value="True" checked><img id="rut_fav" src="https://www.reuters.com/pf/resources/images/reuters/favicon/favicon-32x32.png?d=144" alt="RUT"></div>
+                        <div class="news_check"><input type="checkbox" name="aljInt" value="True" checked><img id="alj_fav" src="https://www.aljazeera.com/favicon_aje.ico" alt="AlJ"></div>
+                        <button class="submit" type="submit">Go</button>
+                    </form>
+                </div>
+                <div class="display">
+                    {% for items in int_news %}
+                    <a href={{items.Link}} target="_blank">
+                        <div class="card">
+                            <img src={{items.Thumbnail}} class="image">
+                            <label class="title"><strong>{{items.Title}}</strong></label><br>
+                            <label class="discription"><em>{{items.Discription}}</em></label>
+                            {% if items.Sauce == 'ALJ' %}
+                            <img src="https://www.aljazeera.com/favicon_aje.ico" class="source">
+                            {% elif items.Sauce == 'RUT' %}
+                            <img src="https://www.reuters.com/pf/resources/images/reuters/favicon/favicon-32x32.png?d=144" class="source">
+                            {% else %}
+                            {% endif %}
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+<script>
+    $(document).ready(function(){
+        $('.c_form').toggle()
+        $('#collapsible1').click(function(){
+            $('#c1_form').toggle()
+        })
+        $('#collapsible2').click(function(){
+            $('#c2_form').toggle()
+        })
+        $('#collapsible3').click(function(){
+            $('#c3_form').toggle()
+        })
+    })
+</script>
+</body>
+</html>
