@@ -147,7 +147,7 @@
                         <div class="card">
                             <img src={{items.Thumbnail}} class="image">
                             <label class="title"><strong>{{items.Title}}</strong></label><br>
-                            <label class="discription"><em>{{items.Discription}}</em></label>
+                            <label class="discription"><em>{{items.Discription|slice:"0:180"}}</em></label>
                             {% if items.Sauce == 'PTI' %}
                             <img src="https://www.ptinews.com/img/favicon.ico" class="source">
                             {% elif items.Sauce == 'ANI' %}
@@ -176,7 +176,7 @@
                         <div class="card">
                             <img src={{items.Thumbnail}} class="image">
                             <label class="title"><strong>{{items.Title}}</strong></label><br>
-                            <label class="discription"><em>{{items.Discription}}</em></label>
+                            <label class="discription"><em>{{items.Discription|slice:"0:180"}}</em></label>
                             {% if items.Sauce == 'CZM' %}
                             <img src="https://images.citizenmatters.in/wp-content/uploads/sites/14/2020/07/21155731/cropped-CITIZEN-MATTERS-Bengaluru-Favicon.jpg?strip=all&lossy=1&ssl=1" class="source">
                             {% elif items.Sauce == 'TNM' %}
@@ -205,7 +205,7 @@
                         <div class="card">
                             <img src={{items.Thumbnail}} class="image">
                             <label class="title"><strong>{{items.Title}}</strong></label><br>
-                            <label class="discription"><em>{{items.Discription}}</em></label>
+                            <label class="discription"><em>{{items.Discription|slice:"0:180"}}</em></label>
                             {% if items.Sauce == 'ALJ' %}
                             <img src="https://www.aljazeera.com/favicon_aje.ico" class="source">
                             {% elif items.Sauce == 'RUT' %}

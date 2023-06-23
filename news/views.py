@@ -162,24 +162,24 @@ def home(request):
     
     #Step 2
     if Loc_Czm == "True" and Loc_Tnm == "True":
-        loc_news = Articles.objects.filter(Sauce__in=['CZM','TNM']).order_by('-Tim')
+        loc_news = Articles.objects.filter(Sauce__in=['CZM','TNM'])
     elif Loc_Czm == "True":
-        loc_news = Articles.objects.filter(Sauce = 'CZM').order_by('Tim')
+        loc_news = Articles.objects.filter(Sauce = 'CZM')
     elif Loc_Tnm == "True":
-        loc_news = Articles.objects.filter(Sauce = 'TNM').order_by('Tim')
+        loc_news = Articles.objects.filter(Sauce = 'TNM')
 # 
     if Nat_Pti == "True" and Nat_Ani == "True":
-        nat_news = Articles.objects.filter(Sauce__in=['PTI','ANI']).order_by('Tim')
+        nat_news = Articles.objects.filter(Sauce__in=['PTI','ANI'])
     elif Nat_Pti == "True":
-        nat_news = Articles.objects.filter(Sauce = 'PTI').order_by('Tim')
+        nat_news = Articles.objects.filter(Sauce = 'PTI')
     elif Nat_Ani == "True":
-        nat_news = Articles.objects.filter(Sauce = 'ANI').order_by('Tim')
+        nat_news = Articles.objects.filter(Sauce = 'ANI')
 # 
     if Int_Alj == "True" and Int_Rut == "True":
-        int_news = Articles.objects.filter(Sauce__in=['ALJ','RUT']).order_by('-Tim')
+        int_news = Articles.objects.filter(Sauce__in=['ALJ','RUT'])
     elif Int_Alj == "True":
-        int_news = Articles.objects.filter(Sauce = 'ALJ').order_by('Tim')
+        int_news = Articles.objects.filter(Sauce = 'ALJ')
     elif Int_Rut == "True":
-        int_news = Articles.objects.filter(Sauce = 'RUT').order_by('Tim')
-    
+        int_news = Articles.objects.filter(Sauce = 'RUT')
+
     return render(request, 'main.html', {'loc_news':loc_news, 'nat_news':nat_news, 'int_news': int_news})
